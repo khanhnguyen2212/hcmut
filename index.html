@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCMUT</title>
+
+    <!-- Import Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Button to scroll to top -->
+    <button id="scrollToTopBtn" class="scroll-to-top-btn" onclick="scrollToTop()">
+        <i class="fa fa-caret-up"></i>
+    </button>
+
+    <script>
+        window.onscroll = function () {
+            var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        };
+
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+    </script>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Đăng Nhập</h2>
+            <label for="username">Tài khoản:</label>
+            <input type="text" id="username" placeholder="Nhập tài khoản">
+
+            <div class="password-container">
+                <label for="password">Mật khẩu:</label>
+
+                <span id="password-toggle" class="password-toggle" onclick="togglePassword()">
+                    <i class="fa fa-eye" id="eye-icon"></i>
+                    <i class="fa fa-eye-slash" id="eye-slash-icon" style="display:none;"></i>
+                </span>
+            </div>
+
+            <input type="password" id="password" placeholder="Nhập mật khẩu">
+
+            <button onclick="login()">Đăng Nhập</button>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-left">
+            <div class="nav-logo">
+                <img src="assets/Bo nhan dien 75 nam-03.png" alt="Logo">
+            </div>
+
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+        <div class="nav-right" id="nav-links">
+            <a href="#thongbao">Thông Báo</a>
+            <a href="#thele">Thể Lệ</a>
+            <a href="#noidungthi">Nội Dung Thi</a>
+            <a href="#bangxephang">Bảng Xếp Hạng</a>
+            <a href="javascript:void(0)" class="button-login" onclick="openModal()">Đăng Nhập</a>
+        </div>
+    </nav>
+
+
+
+
+    <script>
+        function openModal() {
+            document.getElementById("loginModal").style.display = "flex";
+        }
+
+        window.onclick = function (event) {
+            var modal = document.getElementById("loginModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function togglePassword() {
+            var passwordField = document.getElementById('password');
+            var eyeIcon = document.getElementById('eye-icon');
+            var eyeSlashIcon = document.getElementById('eye-slash-icon');
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                eyeIcon.style.display = "none";
+                eyeSlashIcon.style.display = "inline";
+            } else {
+                passwordField.type = "password";
+                eyeIcon.style.display = "inline";
+                eyeSlashIcon.style.display = "none";
+            }
+        }
+
+
+        function login() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (username && password) {
+                alert("Đăng nhập thành công!");
+                document.getElementById("loginModal").style.display = "none";
+            } else {
+                alert("Vui lòng nhập đầy đủ tài khoản và mật khẩu!");
+            }
+        }
+
+        function toggleMenu() {
+            var navLinks = document.getElementById("nav-links");
+            navLinks.classList.toggle("active");
+        }
+
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+
+    </script>
+
+
+
+    <!-- Thông báo -->
+    <section id="thongbao" class="container">
+        <div class="banner">
+            <img src="assets/Bo nhan dien 75 nam-04.png" alt="Banner">
+            <!-- <div class="banner-text-main">Tự hào truyền thống 75 năm Ngày học sinh, sinh viên và Hội Sinh viên Việt Nam
+            </div>
+            <div class="banner-text-secondary">Hội thi Tìm hiểu lịch sử dành cho đoàn viên, sinh viên ĐHQG-HCM</div> -->
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="icon-box">
+                    <i class="icon fas fa-user"></i>
+                </div>
+                <div>
+                    <h3>12,390</h3>
+                    <p>Thí sinh đăng ký</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="icon-box">
+                    <i class="icon fas fa-users"></i>
+                </div>
+                <div>
+                    <h3>8,612</h3>
+                    <p>Thí sinh thực hiện bài thi</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="icon-box">
+                    <i class="icon fas fa-hand-holding-heart"></i>
+                </div>
+                <div>
+                    <h3>40,368</h3>
+                    <p>Lượt tương tác với Hội thi</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="icon-box">
+                    <i class="icon fas fa-school"></i>
+                </div>
+                <div>
+                    <h3>10</h3>
+                    <p>Đơn vị có thí sinh dự thi</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="icon-box">
+                    <i class="icon fas fa-book"></i>
+                </div>
+                <div>
+                    <h3>250</h3>
+                    <p>Bài thi đã hoàn thành</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="icon-box">
+                    <i class="icon fas fa-laptop"></i>
+                </div>
+                <div>
+                    <h3>16,953</h3>
+                    <p>Lượt thi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Thể lệ -->
+    <section id="thele" class="container">
+        <div class="rules-section">
+            <div class="rules-content">
+                <div class="rules-header">
+                    <button class="rules-button">THỂ LỆ HỘI THI</button>
+                    <p>Hội thi "Tự hào truyền thống 75 năm Ngày học sinh, sinh viên và Hội Sinh viên Việt Nam" gồm có 03
+                        đợt thi:</p>
+                </div>
+                <div class="rules-items">
+                    <div class="rules-item">
+                        <div class="rules-item-box">
+                            <i class="fas fa-heart"></i>
+                        </div>
+
+                        <div class="rules-items-texts">
+                            <div class="rules-item-intro">Đợt 1: 04/01 - 06/01/2024</div>
+                            <div class="rules-item-title">“YÊU NƯỚC”</div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="rules-item">
+                        <div class="rules-item-box">
+                            <i class="fas fa-fire"></i>
+                        </div>
+
+                        <div class="rules-items-texts">
+                            <div class="rules-item-intro">Đợt 2: 07/01 - 09/01/2024</div>
+                            <div class="rules-item-title">“CAO TRÀO”</div>
+                        </div>
+
+                    </div>
+
+                    <div class="rules-item">
+                        <div class="rules-item-box">
+                            <i class="fas fa-splotch"></i>
+                        </div>
+
+                        <div class="rules-items-texts">
+                            <div class="rules-item-intro">Đợt 2: 10/01 - 12/01/2024</div>
+                            <div class="rules-item-title">“TỰ HÀO”</div>
+                        </div>
+
+                    </div>
+                </div>
+                <a href="https://drive.google.com/file/d/1s_3BFUza_1yV1-zOAwOzDBn6-d_SkkIf/view?usp=drive_link"
+                    target="_blank">
+                    <button class="details-button">Chi tiết &ensp; <i class="fas fa-caret-right"></i></button>
+                </a>
+
+
+            </div>
+            <div class="rules-images">
+                <div class="row">
+                    <img class="half" src="assets/rule/img1.jpg" alt="Image 1">
+                    <img class="half" src="assets/rule/img2.jpg" alt="Image 2">
+                </div>
+                <div class="row">
+                    <img src="assets/rule/img3.jpg" alt="Image 3">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Nội dung -->
+    <section id="noidungthi" class="container">
+        <div class="content-header-section">
+            <div class="content-header">
+                <button class="content-button">NỘI DUNG THI</button>
+                <p>Hội thi "Tự hào truyền thống 75 năm Ngày học sinh, sinh viên và Hội Sinh viên Việt Nam"</p>
+            </div>
+        </div>
+
+
+        <div class="content-section">
+            <div class="grid-item" id="item1">
+                <img src="assets/content/img1.svg" alt="Hồ Chí Minh">
+                <div class="text-content">
+                    <h2>1. Về Lịch sử phong trào học sinh, sinh viên</h2>
+                    <p>Lịch sử về phong trào học sinh, sinh viên Sài Gòn - Gia Định - Thành phố Hồ Chí Minh và truyền
+                        thống phong trào học sinh, sinh viên và Hội Sinh viên Việt Nam</p>
+                </div>
+            </div>
+            <div class="grid-item" id="item2">
+                <img src="assets/content/img2.svg" alt="Lịch sử Việt Nam">
+                <div class="text-content">
+                    <h2>2. Văn kiện Hội Sinh viên</h2>
+                    <p> Nghị quyết Đại hội Đại biểu Sinh viên Việt Nam TPHCM lần thứ VII, nhiệm kỳ 2023-2028 và chương
+                        trình công tác Hội và phong trào Sinh viên Thành phố năm học 2024 - 2025</p>
+                </div>
+            </div>
+            <div class="grid-item" id="item3">
+                <img src="assets/content/img3.svg" alt="Lịch sử Đảng bộ, chính quyền TP.HCM">
+                <div class="text-content">
+                    <h2>3. Kiến thức về TP. Hồ Chí Minh</h2>
+                    <p>Kiến thức về lịch sử và phát triển Thành phố Hồ Chí Minh</p>
+                </div>
+            </div>
+            <div class="grid-item" id="item4">
+                <img src="assets/content/img4.svg" alt="Lịch sử phong trào học sinh, sinh viên">
+                <div class="text-content">
+                    <h2>4. Kiến thức tổng hợp</h2>
+                    <p>Kiến thức tổng hợp trên các lĩnh vực</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Bảng xếp hạng -->
+    <section id="bangxephang" class="container">
+        <div class="ranking-scope">
+            <button class="ranking-button">BẢNG XẾP HẠNG</button>
+        </div>
+
+        <div class="ranking-scope-for-chart">
+
+            <script>
+                const rankingStudentsPeriod1 = [
+                    { name: "Nguyễn Thị Đăng Uyên", school: "Đoàn Trường ĐH Kinh tế - Luật", rank: 1 },
+                    { name: "Phạm Ngọc Duy", school: "Đoàn Trường ĐH Khoa học tự nhiên", rank: 2 },
+                    { name: "LA BÙI THẢO VY", school: "Đoàn Trường ĐH An Giang", rank: 3 },
+                ];
+
+                const rankingSchoolsPeriod1 = [
+                    { name: "Đoàn Trường ĐH Kinh tế - Luật", number: 567, rank: 1 },
+                    { name: "Đoàn Trường ĐH Bách Khoa", number: 463, rank: 2 },
+                    { name: "Đoàn Trường ĐH Khoa học tự nhiên", number: 347, rank: 3 },
+                ];
+
+                const rankingStudentsPeriod2 = [
+                    { name: "Trần Văn A", school: "Đoàn Trường ĐH Bách Khoa", rank: 1 },
+                    { name: "Lê Thị B", school: "Đoàn Trường ĐH Kinh tế - Luật", rank: 2 },
+                    { name: "Nguyễn C", school: "Đoàn Trường ĐH Khoa học tự nhiên", rank: 3 },
+                ];
+
+                const rankingSchoolsPeriod2 = [
+                    { name: "Đoàn Trường ĐH Bách Khoa", number: 600, rank: 1 },
+                    { name: "Đoàn Trường ĐH Kinh tế - Luật", number: 550, rank: 2 },
+                    { name: "Đoàn Trường ĐH Khoa học tự nhiên", number: 500, rank: 3 },
+                ];
+
+
+
+                function createRankItem(rankData, isTopThree = false) {
+                    const div = document.createElement('div');
+                    div.className = `rank-item rank-${rankData.rank}`;
+                    div.innerHTML = `
+                        ${isTopThree ? `<img src="assets/rank/rank${rankData.rank}.png" alt="Rank ${rankData.rank}">` : ''} 
+                        <div>
+                            <h3>${rankData.rank}. ${rankData.name}</h3>
+                            <p>${rankData.school}</p>
+                        </div>
+                    `;
+                    return div;
+                }
+
+                function createRankItemSchool(rankData, isTopThree = false) {
+                    const div = document.createElement('div');
+                    div.className = `rank-item rank-${rankData.rank}`;
+                    div.innerHTML = `
+                        ${isTopThree ? `<img src="assets/rank/rank${rankData.rank}.png" alt="Rank ${rankData.rank}">` : ''} 
+                        <div>
+                            <h3>${rankData.rank}. ${rankData.name}</h3>
+                            <p>${rankData.number} Thí sinh dự thi</p>
+                        </div>
+                    `;
+                    return div;
+                }
+
+                function renderRankingSection(period, title, rankingStudents, rankingSchools) {
+                    const container = document.createElement('div');
+                    container.className = 'ranking-scope-for-chart';
+
+                    const header = document.createElement('h2');
+                    header.innerHTML = `
+        <i class="fas fa-trophy" style="color: #ffd700; margin-right: 10px; font-size: 30px;"></i>
+        ${title}
+        <i class="fas fa-trophy" style="color: #ffd700; margin-left: 10px; font-size: 30px;"></i>
+    `;
+                    container.appendChild(header);
+
+                    const resultMessage = document.createElement('p');
+                    if (rankingStudents.length === 0 && rankingSchools.length === 0) {
+                        resultMessage.textContent = `Kết quả sẽ được công bố sau khi đợt thi kết thúc`;
+                    } else {
+                        resultMessage.textContent = `Chúc mừng Top 3 thí sinh và đơn vị đạt thứ hạng cao trong ${title}!`;
+                    }
+                    container.appendChild(resultMessage);
+
+                    console.log(rankingStudents.length)
+
+                    if (rankingStudents.length > 0 && rankingSchools.length > 0) {
+                        const rankingSection = document.createElement('div');
+                        rankingSection.className = 'ranking-section';
+
+                        const leftSection = document.createElement('div');
+                        leftSection.className = 'left-section';
+
+                        const topStudentsTitle = document.createElement('h3');
+                        topStudentsTitle.innerHTML = `
+            <i class="fas fa-award" style="color: #ec4523; margin-right: 10px; font-size: 30px;"></i>
+            TOP 3 THÍ SINH
+            <i class="fas fa-award" style="color: #ec4523; margin-left: 10px; font-size: 30px;"></i>
+        `;
+                        leftSection.appendChild(topStudentsTitle);
+
+                        const topThree = document.createElement('div');
+                        topThree.id = `top-three-period${period}`;
+                        rankingStudents.forEach(data => {
+                            topThree.appendChild(createRankItem(data, true));
+                        });
+                        leftSection.appendChild(topThree);
+
+                        const rightSection = document.createElement('div');
+                        rightSection.className = 'right-section';
+
+                        const topSchoolsTitle = document.createElement('h3');
+                        topSchoolsTitle.innerHTML = `
+            <i class="fas fa-award" style="color: #ec4523; margin-right: 10px; font-size: 30px;"></i>
+            TOP 3 ĐƠN VỊ
+            <i class="fas fa-award" style="color: #ec4523; margin-left: 10px; font-size: 30px;"></i>
+        `;
+                        rightSection.appendChild(topSchoolsTitle);
+
+                        const topThreeSchool = document.createElement('div');
+                        topThreeSchool.id = `top-three-school-period${period}`;
+                        rankingSchools.forEach(data => {
+                            topThreeSchool.appendChild(createRankItemSchool(data, true));
+                        });
+                        rightSection.appendChild(topThreeSchool);
+
+                        rankingSection.appendChild(leftSection);
+                        rankingSection.appendChild(rightSection);
+                        container.appendChild(rankingSection);
+                    }
+
+                    const parentElement = document.getElementById('bangxephang');
+                    if (parentElement) {
+                        parentElement.appendChild(container);
+                    } else {
+                        console.error('Không tìm thấy phần tử chứa bảng xếp hạng');
+                    }
+                }
+
+
+                renderRankingSection(1, 'ĐỢT 1: CHỦ ĐỀ "YÊU NƯỚC"', rankingStudentsPeriod1, rankingSchoolsPeriod1);
+                renderRankingSection(2, 'ĐỢT 2: CHỦ ĐỀ "CAO TRÀO"', rankingStudentsPeriod2, rankingSchoolsPeriod2);
+                renderRankingSection(3, 'ĐỢT 3: CHỦ ĐỀ "TỰ HÀO"', rankingStudentsPeriod3, rankingSchoolsPeriod3);
+            </script>
+
+
+
+            <!-- Render full ranking
+            const fullRanking = document.getElementById('full-ranking');
+            rankingData.forEach(data => {
+                const rankText = document.createElement('div');
+                rankText.className = 'rank-text';
+                rankText.innerHTML = `<div class="rank-number">${data.rank}.</div><div class="rank-info">${data.name}<br><p>${data.school}</p></div>`;
+                fullRanking.appendChild(rankText);
+            }); -->
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Ranking Website. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
